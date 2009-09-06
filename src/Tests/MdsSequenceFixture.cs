@@ -103,8 +103,8 @@ namespace Tests {
 			}
 			[Fact]
 			public void False_for_matching_unnegated_pointers() {
-				Assert.False(Parse("(2,1)(3,2)").CanHi(0, 1),"§1");
-				Assert.False(Parse("(1,2)(3,2)").CanHi(0, 1),"§2");
+				Assert.False(Parse("(2,1)(3,2)").CanHi(0, 1), "§1");
+				Assert.False(Parse("(1,2)(3,2)").CanHi(0, 1), "§2");
 			}
 		}
 

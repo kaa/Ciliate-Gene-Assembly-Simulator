@@ -12,9 +12,9 @@ namespace ConsoleApp {
 			}
 
 			var counts = new CountingLogger();
-			var logger = new TraceLogger(counts,Console.Out);
+//			var logger = new TraceLogger(counts,Console.Out);
 
-			var assembler = new GeneAssembler(logger);
+			var assembler = new GeneAssembler(counts);
 			if(!(opts.ld||opts.hi||opts.dlad)) {
 				assembler.LdIsAllowed = true;
 				assembler.HiIsAllowed = true;

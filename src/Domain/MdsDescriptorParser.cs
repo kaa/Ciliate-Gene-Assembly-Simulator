@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 namespace Domain {
 	public class MdsDescriptorParser {
 
-		static readonly Regex SequencePattern = new Regex(@"\(?<i>-?\d+(,\[(?<c>-?\d+(,-?\d+)*)\])?,(?<o>-?\d+)\)");
+		static readonly Regex SequencePattern = new Regex(@"\((?<in>-?\d+)(,\[(?<content>-?\d+(,-?\d+)*)\])?,(?<out>-?\d+)\)");
 		public static IMdsDescriptor Parse( string str ) {
 			return Parse(str, new MdsDescriptorFactory());
 		}
@@ -16,10 +16,11 @@ namespace Domain {
 				if(!match.Success) {
 					throw new FormatException("Invalid MDS sequence format, '"+str+"'");
 				}
-				var inPtr = int.Parse(match.Groups["i"].Value);
-				var outPtr = int.Parse(match.Groups["o"].Value);
-				var content = match.Groups["c"].Success?match.Groups["c"].Value.Split(',').Select(t => int.Parse(t)).ToArray():new int[0];
-				factory.Add(inPtr,content,outPtr);
+				factory.Add(
+					int.Parse(match.Groups["in"].Value), 
+					match.Groups["content"].Success?match.Groups["content"].Value.Split(',').Select(t => int.Parse(t)).ToArray():new int[0],
+					int.Parse(match.Groups["out"].Value)
+				);
 				if( match.Index+match.Length==str.Length ) break;
 				match = match.NextMatch();
 			}
