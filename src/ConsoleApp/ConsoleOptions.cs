@@ -12,6 +12,9 @@ namespace ConsoleApp
 		[Option(Description="Allow Dlad")]
 		public bool dlad;
 
+		[Option(Description="File to read MDS descriptor from")]
+		public string file;
+
 		[Option(Description="Display help page",Short="h")]
 		public bool help;
 
@@ -23,7 +26,7 @@ namespace ConsoleApp
 		public override void Help()
 		{
 			Console.WriteLine();
-			Console.WriteLine( "Console [options] MDS" );
+			Console.WriteLine( "Console [options] [MDS]" );
 			Console.WriteLine();
 			Console.WriteLine( "Options:" );
 			base.Help();
