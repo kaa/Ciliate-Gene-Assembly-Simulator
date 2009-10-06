@@ -43,18 +43,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GeneAssembler.cs" />
-    <Compile Include="CountingLogger.cs" />
-    <Compile Include="ILogger.cs" />
+    <Compile Include="StrategyEnumerator.cs" />
+    <Compile Include="CountingRecorder.cs" />
+    <Compile Include="IRecorder.cs" />
     <Compile Include="IMds.cs" />
     <Compile Include="IMdsDescriptor.cs" />
     <Compile Include="IMdsDescriptorFactory.cs" />
+    <Compile Include="IOperation.cs" />
+    <Compile Include="Pointer.cs" />
+    <Compile Include="Strategy.cs" />
     <Compile Include="Mds.cs" />
-    <Compile Include="MdsDescriptor.cs" />
-    <Compile Include="MdsDescriptorFactory.cs" />
+    <Compile Include="LinqMdsDescriptor.cs" />
+    <Compile Include="LinqMdsDescriptorFactory.cs" />
     <Compile Include="MdsDescriptorParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TraceLogger.cs" />
+    <Compile Include="TraceRecorder.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -3,18 +3,24 @@ using System.Linq;
 using System.Collections.Generic;
 
 namespace Domain {
-	public struct Mds : IMds {
-		private readonly int inPtr;
-		private readonly int outPtr;
-		private readonly int[] content;
-		public int In { get { return inPtr; } }
-		public int Out { get { return outPtr; } }
+	internal struct Mds : IMds {
+		internal readonly int incoming;
+		internal readonly int outgoing;
+		internal readonly int[] content;
+		public int In { get { return incoming; } }
+		public int Out { get { return outgoing; } }
 		public int[] Content { get { return content; } }
+		public bool IsSuccessful {
+			get {
+				return incoming == Pointer.Start && outgoing == Pointer.End || 
+				       incoming == -Pointer.End && outgoing == -Pointer.Start;
+			}
+		}
 
 		public Mds(int left, int right, params IEnumerable<int>[] contents)
 			: this() {
-			inPtr = left;
-			outPtr = right;
+			incoming = left;
+			outgoing = right;
 			content = contents.Aggregate(Enumerable.Empty<int>(),(acc, seq) => acc.Concat(seq)).ToArray();
 		}
 		public Mds Invert() {
@@ -22,7 +28,7 @@ namespace Domain {
 		}
 		public override string ToString() {
 			if(Content.Length>0) {
-				return String.Format("({0},[{1}],{2})", 
+				return String.Format("({0},{1},{2})", 
 					In,
 					String.Concat(content.Select(t => "," + t).ToArray()).Substring(1), 
 					Out);

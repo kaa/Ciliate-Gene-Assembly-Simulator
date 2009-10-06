@@ -1,6 +1,6 @@
 ﻿namespace Domain {
 	public interface IMdsDescriptorFactory {
-		void Add(int incomingPointer, int[] content, int outgoingPointer);
+		void Add(int incoming, int[] content, int outgoing);
 		IMdsDescriptor Create();
 	}
 }
